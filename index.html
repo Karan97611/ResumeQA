@@ -4,20 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Karan Kumar - Interactive Resume</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9fafb;
+      background: linear-gradient(120deg, #89f7fe, #66a6ff);
+      background-attachment: fixed;
       color: #333;
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
     }
+    body.dark {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #f9fafb;
+    }
+    /* Animated floating circles background */
+    .background span {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      animation: move 20s linear infinite;
+    }
+    @keyframes move {
+      from { transform: translateY(0) rotate(0deg); }
+      to { transform: translateY(-1000px) rotate(360deg); }
+    }
+
     header {
-      background: linear-gradient(90deg, #4f46e5, #6366f1);
+      background: rgba(79,70,229,0.9);
       color: #fff;
       padding: 2rem;
       text-align: center;
+      position: relative;
+      z-index: 1;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
     }
     header h1 {
       margin: 0;
@@ -29,10 +55,16 @@
     main {
       max-width: 900px;
       margin: 2rem auto;
-      background: #fff;
+      background: rgba(255,255,255,0.9);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+    body.dark main {
+      background: rgba(31,41,55,0.9);
     }
     section {
       margin-bottom: 2rem;
@@ -42,6 +74,10 @@
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
       color: #4f46e5;
+    }
+    body.dark h2 {
+      color: #818cf8;
+      border-color: #374151;
     }
     ul {
       padding-left: 1.2rem;
@@ -55,14 +91,23 @@
       border-radius: 8px;
       font-size: 0.9rem;
     }
+    body.dark .skills span {
+      background: #312e81;
+      color: #c7d2fe;
+    }
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.8rem;
       color: #6b7280;
+      position: relative;
+      z-index: 1;
+    }
+    body.dark footer {
+      color: #9ca3af;
     }
     .contact a {
-      color: #4f46e5;
+      color: #fff;
       text-decoration: none;
     }
     .contact a:hover {
@@ -80,28 +125,76 @@
     .btn:hover {
       background: #4338ca;
     }
+    .toggle-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #fff;
+      color: #4f46e5;
+      border: none;
+      padding: 0.5rem 0.7rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark .toggle-btn {
+      background: #374151;
+      color: #f9fafb;
+    }
+    .icons a {
+      margin: 0 0.5rem;
+      font-size: 1.4rem;
+      color: #fff;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .icons a:hover {
+      transform: scale(1.2);
+      color: #ffeb3b;
+    }
+    body.dark .icons a {
+      color: #facc15;
+    }
   </style>
 </head>
 <body>
+  <!-- Dynamic animated background -->
+  <div class="background">
+    <span style="width:80px;height:80px;left:10%;bottom:-150px;"></span>
+    <span style="width:50px;height:50px;left:40%;bottom:-200px;"></span>
+    <span style="width:100px;height:100px;left:70%;bottom:-250px;"></span>
+    <span style="width:60px;height:60px;left:85%;bottom:-180px;"></span>
+    <span style="width:40px;height:40px;left:25%;bottom:-220px;"></span>
+  </div>
+
   <header>
+    <button class="toggle-btn" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
     <h1>Karan Kumar</h1>
     <p>Senior Automation Test Engineer</p>
     <p>Bengaluru, India</p>
     <div class="contact">
-      <p>📧 <a href="mailto:Karan97611@gmail.com">Karan97611@gmail.com</a></p>
-      <p>🔗 <a href="https://linkedin.com/in/karan97611" target="_blank">LinkedIn Profile</a></p>
-      <p>📱 <a href="tel:+919761182859">+91-9761182859</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:Karan97611@gmail.com">Karan97611@gmail.com</a></p>
+      <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/karan97611" target="_blank">LinkedIn Profile</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+919761182859">+91-9761182859</a></p>
     </div>
-    <a href="Resume.pdf" class="btn" target="_blank">Download PDF Resume</a>
+    <a href="Resume.pdf" class="btn" target="_blank"><i class="fas fa-download"></i> Download PDF Resume</a>
+    <div class="icons">
+      <a href="#profile"><i class="fas fa-user"></i></a>
+      <a href="#experience"><i class="fas fa-briefcase"></i></a>
+      <a href="#skills"><i class="fas fa-code"></i></a>
+      <a href="#projects"><i class="fas fa-tasks"></i></a>
+      <a href="#education"><i class="fas fa-graduation-cap"></i></a>
+      <a href="#certifications"><i class="fas fa-certificate"></i></a>
+    </div>
   </header>
 
   <main>
-    <section>
+    <section id="profile">
       <h2>Profile</h2>
       <p>Experienced Automation QA Engineer with 7 years in Telecom and Insurance domains, specializing in UI, API, and backend testing using Java, Selenium WebDriver, TestNG, and Postman. Proficient in CI/CD pipelines, Docker containerization, and backend validation using SQL and Unix.</p>
     </section>
 
-    <section>
+    <section id="experience">
       <h2>Experience</h2>
       <h3>SDET - Automation and DevOps | Wipro (WDIS)</h3>
       <p><em>02/2023 - Present</em></p>
@@ -125,7 +218,7 @@
       </ul>
     </section>
 
-    <section>
+    <section id="skills">
       <h2>Skills</h2>
       <div class="skills">
         <span>Java</span>
@@ -137,7 +230,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="projects">
       <h2>Projects</h2>
       <h3>CI-Integrated Regression Suite</h3>
       <p>Java + Selenium framework integrated into Jenkins for nightly and deployment regression tests.</p>
@@ -145,13 +238,13 @@
       <p>Created Docker images for consistent test environments on Linux servers.</p>
     </section>
 
-    <section>
+    <section id="education">
       <h2>Education</h2>
       <p><strong>M.Tech in Software Engineering</strong> — BITS Pilani (2019 - 2022)</p>
       <p><strong>Bachelor of Computer Applications</strong> — CCS University, Meerut (2015 - 2018)</p>
     </section>
 
-    <section>
+    <section id="certifications">
       <h2>Certifications</h2>
       <ul>
         <li>Google Cloud GenAI - L1</li>
@@ -160,7 +253,7 @@
       </ul>
     </section>
 
-    <section>
+    <section id="languages">
       <h2>Languages & Awards</h2>
       <p><strong>Languages:</strong> Hindi, Punjabi, English</p>
       <p><strong>Awards:</strong> Business Unit Award — "I am QET, I lead"; Stand Out Performer; "Go That Extra Mile"</p>
@@ -170,5 +263,19 @@
   <footer>
     Built with ❤️ | Hosted on GitHub Pages
   </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const icon = document.querySelector('.toggle-btn i');
+      if (document.body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    }
+  </script>
 </body>
 </html>
