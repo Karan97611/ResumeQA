@@ -277,6 +277,9 @@
     <button id="downloadBtn" class="download-btn" title="Download resume from repo or print current view">
         <i class="fas fa-file-download"></i> Download PDF
     </button>
+        <a href="Resume.pdf" class="btn" target="_blank"><i class="fas fa-download"></i> Download PDF Resume</a>
+
+
 
     <div class="card" id="resumeCard">
         
@@ -284,7 +287,7 @@
             
             <div class="profile-container">
                 <!-- keep original avatar URL as default; JS will replace if repo image exists -->
-                <img id="profileImg" src="https://ui-avatars.com/api/?name=Karan+Kumar&background=0D8ABC&color=fff&size=150" 
+                <img id="profileImg" src="  https://ui-avatars.com/api/?name=Karan+Kumar&background=0D8ABC&color=fff&size=150" 
                      alt="Karan Kumar" 
                      class="profile-img">
             </div>
@@ -420,7 +423,7 @@
 
         // CONFIG: update these if your repo uses different paths
         const REPO_PROFILE_PATH = 'assets/profile.jpg'; // repo profile image
-        const REPO_RESUME_PATH = 'assets/Karan_Kumar_Resume.pdf'; // resume PDF in repo
+        const REPO_RESUME_PATH = 'assets/Resume.pdf'; // resume PDF in repo
 
         const downloadBtn = document.getElementById('downloadBtn');
         const profileImg = document.getElementById('profileImg');
@@ -479,7 +482,7 @@
                 // Programmatic download (same-origin/static hosting expected)
                 const a = document.createElement('a');
                 a.href = REPO_RESUME_PATH;
-                a.download = 'Karan_Kumar_Resume.pdf';
+                a.download = 'Resume.pdf';
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
