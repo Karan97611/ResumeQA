@@ -1,281 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Karan Kumar - Interactive Resume</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(120deg, #89f7fe, #66a6ff);
-      background-attachment: fixed;
-      color: #333;
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-      scroll-behavior: smooth;
-      position: relative;
-      overflow-x: hidden;
-    }
-    body.dark {
-      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-      color: #f9fafb;
-    }
-    /* Animated floating circles background */
-    .background span {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      animation: move 20s linear infinite;
-    }
-    @keyframes move {
-      from { transform: translateY(0) rotate(0deg); }
-      to { transform: translateY(-1000px) rotate(360deg); }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karan Kumar | Automation Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & SETUP --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    header {
-      background: rgba(79,70,229,0.9);
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    header p {
-      margin: 0.2rem 0;
-    }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      background: rgba(255,255,255,0.9);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: background 0.3s, color 0.3s;
-      position: relative;
-      z-index: 1;
-    }
-    body.dark main {
-      background: rgba(31,41,55,0.9);
-    }
-    section {
-      margin-bottom: 2rem;
-    }
-    h2 {
-      border-bottom: 2px solid #e5e7eb;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-      color: #4f46e5;
-    }
-    body.dark h2 {
-      color: #818cf8;
-      border-color: #374151;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    .skills span {
-      display: inline-block;
-      background: #e0e7ff;
-      color: #3730a3;
-      margin: 0.3rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
-    body.dark .skills span {
-      background: #312e81;
-      color: #c7d2fe;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.8rem;
-      color: #6b7280;
-      position: relative;
-      z-index: 1;
-    }
-    body.dark footer {
-      color: #9ca3af;
-    }
-    .contact a {
-      color: #fff;
-      text-decoration: none;
-    }
-    .contact a:hover {
-      text-decoration: underline;
-    }
-    .btn {
-      display: inline-block;
-      margin: 1rem 0;
-      padding: 0.6rem 1.2rem;
-      background: #4f46e5;
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    .btn:hover {
-      background: #4338ca;
-    }
-    .toggle-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #fff;
-      color: #4f46e5;
-      border: none;
-      padding: 0.5rem 0.7rem;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: background 0.3s, color 0.3s;
-    }
-    body.dark .toggle-btn {
-      background: #374151;
-      color: #f9fafb;
-    }
-    .icons a {
-      margin: 0 0.5rem;
-      font-size: 1.4rem;
-      color: #fff;
-      transition: transform 0.2s, color 0.2s;
-    }
-    .icons a:hover {
-      transform: scale(1.2);
-      color: #ffeb3b;
-    }
-    body.dark .icons a {
-      color: #facc15;
-    }
-  </style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+            background: radial-gradient(circle at center, #2b3544, #10151f);
+            overflow: hidden;
+            perspective: 1200px; /* Deep 3D space */
+        }
+         /* --- DOWNLOAD BUTTON --- */
+        .download-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 180, 216, 0.2);
+            border: 1px solid #00b4d8;
+            color: #00b4d8;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            z-index: 100;
+            transform: translateZ(50px); /* Floats above everything */
+            text-decoration: none;
+        }
+        .download-btn:hover {
+            background: #00b4d8;
+            color: white;
+            box-shadow: 0 0 15px #00b4d8;
+        }
+
+
+        /* --- THE GLASS DASHBOARD --- */
+        .card {
+            width: 950px; /* Slightly wider to fit content */
+            height: 650px; /* Slightly taller */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            display: flex;
+            transition: transform 0.1s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        /* --- DECORATIVE FLOATING ORBS --- */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .orb-1 { width: 300px; height: 300px; background: #7b2cbf; top: -100px; left: -100px; animation: move1 10s infinite alternate; }
+        .orb-2 { width: 250px; height: 250px; background: #00b4d8; bottom: -50px; right: -50px; animation: move2 8s infinite alternate; }
+
+        @keyframes move1 { 0% { transform: translate(0,0); } 100% { transform: translate(30px, 50px); } }
+        @keyframes move2 { 0% { transform: translate(0,0); } 100% { transform: translate(-30px, -20px); } }
+
+        /* --- LEFT PANEL (Profile & Skills) --- */
+        .left-panel {
+            width: 32%;
+            padding: 30px 20px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transform: translateZ(20px);
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.3);
+            margin-bottom: 15px;
+            /* Placeholder: Replace URL below with your actual photo URL */
+            background: #333 url('https://ui-avatars.com/api/?name=Karan+Kumar&background=0D8ABC&color=fff&size=150') center/cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transform: translateZ(30px);
+        }
+
+        h1 { color: #fff; font-size: 1.6rem; margin-bottom: 5px; transform: translateZ(25px); }
+        h3 { color: #00b4d8; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 15px; transform: translateZ(25px); }
+
+        .contact-mini {
+            font-size: 0.75rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transform: translateZ(25px);
+        }
+        .contact-mini i { color: #00b4d8; margin-right: 5px; }
+        .contact-mini a { color: #ccc; text-decoration: none; transition: 0.3s; }
+        .contact-mini a:hover { color: #fff; }
+
+        /* Impact Stats Grid */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 25px;
+            transform: translateZ(35px);
+        }
+
+        .impact-box {
+            background: rgba(255,255,255,0.05);
+            padding: 8px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+        .impact-box:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
+        .impact-val { display: block; font-size: 1.1rem; font-weight: bold; color: #fff; }
+        .impact-lbl { font-size: 0.6rem; color: #aaa; text-transform: uppercase; }
+
+        /* Skills Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            transform: translateZ(30px);
+        }
+        .tag {
+            background: linear-gradient(135deg, #7b2cbf, #3a0ca3);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .tag:hover { transform: translateY(-3px) scale(1.1); background: #00b4d8; cursor: default; }
+
+        /* --- RIGHT PANEL (Scrollable Journey) --- */
+        .right-panel {
+            width: 68%;
+            padding: 40px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.2) transparent;
+            transform: translateZ(10px);
+        }
+
+        /* Custom Scrollbar */
+        .right-panel::-webkit-scrollbar { width: 6px; }
+        .right-panel::-webkit-scrollbar-track { background: transparent; }
+        .right-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+
+        .section-title {
+            color: #fff;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title:first-child { margin-top: 0; }
+        .section-title i { color: #00b4d8; }
+
+        /* Timeline Items */
+        .timeline-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 2px solid rgba(255,255,255,0.1);
+            position: relative;
+            transition: 0.3s;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00b4d8;
+            box-shadow: 0 0 10px #00b4d8;
+        }
+        .timeline-item:hover {
+            background: rgba(255,255,255,0.03);
+            border-radius: 0 10px 10px 0;
+            padding: 10px 10px 10px 20px;
+        }
+
+        .job-title { color: #fff; font-weight: 600; font-size: 1rem; display: flex; justify-content: space-between; }
+        .job-date { font-size: 0.8rem; color: #00b4d8; font-weight: normal; }
+        .company { color: #aaa; font-size: 0.85rem; margin-bottom: 8px; font-style: italic; }
+        .desc { color: #ccc; font-size: 0.85rem; line-height: 1.6; }
+        .desc ul { margin-left: 15px; margin-top: 5px; }
+        .desc li { margin-bottom: 3px; }
+        
+        .highlight { color: #00b4d8; font-weight: bold; }
+
+        /* Certificates Grid */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .cert-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #ddd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .cert-item i { color: #f1c40f; }
+
+        .summary-text {
+            color: #ddd;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+    </style>
 </head>
 <body>
-  <!-- Dynamic animated background -->
-  <div class="background">
-    <span style="width:80px;height:80px;left:10%;bottom:-150px;"></span>
-    <span style="width:50px;height:50px;left:40%;bottom:-200px;"></span>
-    <span style="width:100px;height:100px;left:70%;bottom:-250px;"></span>
-    <span style="width:60px;height:60px;left:85%;bottom:-180px;"></span>
-    <span style="width:40px;height:40px;left:25%;bottom:-220px;"></span>
-  </div>
 
-  <header>
-    <button class="toggle-btn" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
-    <h1>Karan Kumar</h1>
-    <p>Senior Automation Test Engineer</p>
-    <p>Bengaluru, India</p>
-    <div class="contact">
-      <p><i class="fas fa-envelope"></i> <a href="mailto:Karan97611@gmail.com">Karan97611@gmail.com</a></p>
-      <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/karan97611" target="_blank">LinkedIn Profile</a></p>
-      <p><i class="fas fa-phone"></i> <a href="tel:+919761182859">+91-9761182859</a></p>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="card" id="resumeCard">
+        
+        <div class="left-panel">
+            <div class="profile-img"></div>
+            <h1>Karan Kumar</h1>
+            <h3>Senior Automation Test Engineer</h3>
+            
+            <div class="contact-mini">
+                <span><i class="fas fa-map-marker-alt"></i> Bengaluru, India</span>
+                <span><i class="fas fa-envelope"></i> Karan97611@gmail.com</span>
+                <span><i class="fas fa-phone"></i> +91-9761182859</span>
+                <a href="https://linkedin.com/in/karan97611" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/karan97611</a>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-box">
+                    <span class="impact-val">7 Years</span>
+                    <span class="impact-lbl">Experience</span>
+                </div>
+                <div class="impact-box">
+                    <span class="impact-val">90%</span>
+                    <span class="impact-lbl">Auto Deployment</span>
+                </div>
+                <div class="impact-box">
+                    <span class="impact-val">75%</span>
+                    <span class="impact-lbl">Faster Regress.</span>
+                </div>
+                <div class="impact-box">
+                    <span class="impact-val">20 Hrs+</span>
+                    <span class="impact-lbl">Saved / Sprint</span>
+                </div>
+            </div>
+
+            <div class="skills-container">
+                <span class="tag">Java</span>
+                <span class="tag">Selenium WebDriver</span>
+                <span class="tag">TestNG</span>
+                <span class="tag">Jenkins & GitLab</span>
+                <span class="tag">Docker</span>
+                <span class="tag">AWS Cloud</span>
+                <span class="tag">SQL & Oracle</span>
+                <span class="tag">Postman API</span>
+                <span class="tag">GenAI</span>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            
+            <div class="summary-text">
+                "Experienced Automation QA Engineer specializing in UI, API, and backend testing using Java, Selenium, and Postman. Adept in CI/CD pipelines (Jenkins/GitLab) and Docker containerization. Committed to delivering high-quality, automation-first solutions."
+            </div>
+
+            <div class="section-title">
+                <i class="fas fa-briefcase"></i> Professional Experience
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">
+                    SDET - Automation & DevOps
+                    <span class="job-date">Feb 2023 - Present</span>
+                </div>
+                <div class="company">Wipro (WDIS)</div>
+                <div class="desc">
+                    <ul>
+                        <li>Engineered CI/CD pipelines with Jenkins/GitLab, automating <span class="highlight">90%</span> of deployments.</li>
+                        <li>Developed Selenium suites reducing regression time by <span class="highlight">75%</span>.</li>
+                        <li>Managed Docker containers on Linux, improving deployment consistency by <span class="highlight">99%</span>.</li>
+                        <li>Validated complex DB migrations using advanced SQL queries.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">
+                    Automation QA Engineer
+                    <span class="job-date">Mar 2020 - Jan 2023</span>
+                </div>
+                <div class="company">Wipro Limited (HKT)</div>
+                <div class="desc">
+                    <ul>
+                        <li>Increased test coverage by <span class="highlight">70%</span> using Java/Selenium, slashing manual effort by 80%.</li>
+                        <li>Validated 50+ RESTful API endpoints, improving system reliability by 20%.</li>
+                        <li>Reduced post-release defects by 25% through comprehensive test planning.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">
+                    QA Engineer
+                    <span class="job-date">July 2018 - Dec 2019</span>
+                </div>
+                <div class="company">Wipro Limited (Aviva)</div>
+                <div class="desc">
+                    <ul>
+                        <li>Performed manual testing for insurance applications ensuring compliance.</li>
+                        <li>Logged and tracked defects using JIRA in an Agile environment.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <i class="fas fa-certificate"></i> Certificates & Awards
+            </div>
+
+            <div class="cert-grid">
+                <div class="cert-item"><i class="fas fa-medal"></i> Google Cloud GenAI - L1</div>
+                <div class="cert-item"><i class="fas fa-cloud"></i> AWS Certified Cloud Practitioner</div>
+                <div class="cert-item"><i class="fas fa-code-branch"></i> GitHub Copilot</div>
+                <div class="cert-item"><i class="fas fa-trophy"></i> Award: "I am QET, I lead"</div>
+                <div class="cert-item"><i class="fas fa-star"></i> Award: "Go That Extra Mile"</div>
+            </div>
+
+            <div class="section-title">
+                <i class="fas fa-graduation-cap"></i> Education
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">M.Tech in Software Engineering <span class="job-date">2019 - 2022</span></div>
+                <div class="company">BITS Pilani</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">Bachelor of Computer Applications <span class="job-date">2015 - 2018</span></div>
+                <div class="company">CCS University, Meerut</div>
+            </div>
+
+        </div>
     </div>
-    <a href="Resume.pdf" class="btn" target="_blank"><i class="fas fa-download"></i> Download PDF Resume</a>
-    <div class="icons">
-      <a href="#profile"><i class="fas fa-user"></i></a>
-      <a href="#experience"><i class="fas fa-briefcase"></i></a>
-      <a href="#skills"><i class="fas fa-code"></i></a>
-      <a href="#projects"><i class="fas fa-tasks"></i></a>
-      <a href="#education"><i class="fas fa-graduation-cap"></i></a>
-      <a href="#certifications"><i class="fas fa-certificate"></i></a>
-    </div>
-  </header>
 
-  <main>
-    <section id="profile">
-      <h2>Profile</h2>
-      <p>Experienced Automation QA Engineer with 7 years in Telecom and Insurance domains, specializing in UI, API, and backend testing using Java, Selenium WebDriver, TestNG, and Postman. Proficient in CI/CD pipelines, Docker containerization, and backend validation using SQL and Unix.</p>
-    </section>
+    <script>
+        const card = document.getElementById('resumeCard');
 
-    <section id="experience">
-      <h2>Experience</h2>
-      <h3>SDET - Automation and DevOps | Wipro (WDIS)</h3>
-      <p><em>02/2023 - Present</em></p>
-      <ul>
-        <li>Engineered CI/CD pipelines with Jenkins & GitLab — automated 90% of deployments, cutting delivery time by 40%.</li>
-        <li>Built Selenium automation suites that reduced regression time by 75%.</li>
-        <li>Validated DB migrations using advanced SQL and automation.</li>
-      </ul>
+        // Logic for 3D Tilt Effect
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 25; 
+            const y = (window.innerHeight / 2 - e.pageY) / 25; 
 
-      <h3>Automation QA Engineer | Wipro Limited (HKT)</h3>
-      <p><em>03/2020 - 01/2023</em></p>
-      <ul>
-        <li>Automated regression suite in Java + Selenium — increased coverage by 70% and cut manual effort by 80%.</li>
-        <li>Validated 50+ REST endpoints with Postman, improving reliability by 20%.</li>
-      </ul>
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
 
-      <h3>QA Engineer | Wipro Limited (Aviva)</h3>
-      <p><em>07/2018 - 12/2019</em></p>
-      <ul>
-        <li>Performed manual testing across insurance apps, wrote detailed test cases & plans.</li>
-      </ul>
-    </section>
+        // Reset on mouse leave
+        document.addEventListener('mouseleave', () => {
+            card.style.transition = 'all 0.5s ease';
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="skills">
-        <span>Java</span>
-        <span>Selenium WebDriver</span>
-        <span>TestNG / JUnit</span>
-        <span>SQL / Oracle</span>
-        <span>Jenkins / GitLab CI</span>
-        <span>Docker / Linux</span>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <h3>CI-Integrated Regression Suite</h3>
-      <p>Java + Selenium framework integrated into Jenkins for nightly and deployment regression tests.</p>
-      <h3>Dockerized Test Environments</h3>
-      <p>Created Docker images for consistent test environments on Linux servers.</p>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <p><strong>M.Tech in Software Engineering</strong> — BITS Pilani (2019 - 2022)</p>
-      <p><strong>Bachelor of Computer Applications</strong> — CCS University, Meerut (2015 - 2018)</p>
-    </section>
-
-    <section id="certifications">
-      <h2>Certifications</h2>
-      <ul>
-        <li>Google Cloud GenAI - L1</li>
-        <li>AWS Certified Cloud Practitioner (CLF-C02)</li>
-        <li>GitHub Copilot</li>
-      </ul>
-    </section>
-
-    <section id="languages">
-      <h2>Languages & Awards</h2>
-      <p><strong>Languages:</strong> Hindi, Punjabi, English</p>
-      <p><strong>Awards:</strong> Business Unit Award — "I am QET, I lead"; Stand Out Performer; "Go That Extra Mile"</p>
-    </section>
-  </main>
-
-  <footer>
-    Built with ❤️ | Hosted on GitHub Pages
-  </footer>
-
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-      const icon = document.querySelector('.toggle-btn i');
-      if (document.body.classList.contains('dark')) {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-      } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-      }
-    }
-  </script>
+        document.addEventListener('mouseenter', () => {
+            card.style.transition = 'none';
+        });
+    </script>
 </body>
+
+    <!-- keep same look but attach our JS handler instead of direct window.print() -->
+    <button id="downloadBtn" class="download-btn" title="Download resume from repo or print current view">
+        <i class="fas fa-file-download"></i> Download PDF
+    </button>
+
+    <div class="card" id="resumeCard">
+        
+        <div class="left-panel">
+            
+            <div class="profile-container">
+                <!-- keep original avatar URL as default; JS will replace if repo image exists -->
+                <img id="profileImg" src="https://ui-avatars.com/api/?name=Karan+Kumar&background=0D8ABC&color=fff&size=150" 
+                     alt="Karan Kumar" 
+                     class="profile-img">
+            </div>
+
 </html>
